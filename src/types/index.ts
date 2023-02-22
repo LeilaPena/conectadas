@@ -7,6 +7,9 @@ export type User = {
     birthdate: Date
 }
 
+export type signUpType = Omit <User, "id">
+
+
 export type Category = {
     id: string
     name: string

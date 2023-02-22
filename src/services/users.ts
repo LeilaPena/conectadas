@@ -1,7 +1,7 @@
-import { User } from "../types"
+import { signUpType } from "../types"
 import { apiFirebase } from "../utils/axios"
 
-const add = async (user: User) => {
+const add = async (user: signUpType) => {
    
     const response = await apiFirebase.post('/users.json', user)
     
