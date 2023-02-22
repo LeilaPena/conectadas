@@ -1,26 +1,16 @@
 export type User = {
-    id: string
-    name: string
-    lastname: string
-    email: string
-    password: string
-    birthdate: Date
-}
+  avatar: string;
+  birthdate: Date;
+  city: string;
+  country: string;
+  email: string;
+  friends: string[];
+  id: string;
+  lastname: string;
+  name: string;
+  password: string;
+  sessionToken: string;
+  status: string;
+};
 
-export type signUpType = Omit <User, "id">
-
-
-export type Category = {
-    id: string
-    name: string
-    color: string
-}
-
-export type Task = {
-    id: string
-    title: string
-    date: Date
-    category: Category
-    description: string
-    status: string
-}
+export type signUpType = Omit<User, "id">;
