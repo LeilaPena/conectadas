@@ -7,7 +7,7 @@ type Props = {
 
 const Main: FC<Props> = ({children}) => {
     return (
-        <main>
+        <main className="p-4">
             {children}
         </main>
     )
