@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react"
+import "./style.scss"
 
 type Props = {
     children: ReactNode
@@ -7,7 +8,7 @@ type Props = {
 
 const Main: FC<Props> = ({children}) => {
     return (
-        <main className="p-4">
+        <main>
             {children}
         </main>
     )
