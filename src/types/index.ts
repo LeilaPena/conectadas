@@ -14,3 +14,8 @@ export type User = {
 };
 
 export type signUpType = Omit<User, "id">;
+
+export type LoginFormType = {
+  email: string, 
+  pass: string,
+}

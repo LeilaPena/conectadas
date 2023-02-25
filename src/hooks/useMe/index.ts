@@ -1,8 +1,8 @@
-import {signUpType} from "../../types"
+import {LoginFormType, signUpType} from "../../types"
 
 const useMe = () => {
 
-    const login = (user: string, pass:string) => {
+    const login = ({email, pass}: LoginFormType) => {
 
     }
 
