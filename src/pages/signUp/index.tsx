@@ -1,7 +1,8 @@
 import { Layout, SignUpForm } from "../../components"
+import { withAuth } from "../../hoc"
 
 
-const SignUp = () => {
+const SignUpPage = () => {
     return (
         <Layout>
             <SignUpForm />
@@ -9,4 +10,4 @@ const SignUp = () => {
     )
 }
 
-export {SignUp}
+export const SignUp = withAuth(SignUpPage)
