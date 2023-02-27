@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { Layout } from "../../components"
+import { withAuth } from "../../hoc"
 import { apiMovies } from "../../utils/axios"
 
 
-const Movies = () => {
+const MoviesPage = () => {
 
     const [movies, setMovies] = useState<any[]>([])
 
@@ -26,4 +27,4 @@ const Movies = () => {
     )
 }
 
-export {Movies}
+export const Movies = withAuth(MoviesPage)

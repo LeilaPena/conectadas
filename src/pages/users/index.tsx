@@ -1,6 +1,7 @@
 import { Layout } from "../../components"
+import { withAuth } from "../../hoc"
 
-const Users = () => {
+const UsersPage = () => {
     return (
         <Layout>
             Users
@@ -8,4 +9,4 @@ const Users = () => {
     )
 }
 
-export {Users}
+export const Users = withAuth(UsersPage)

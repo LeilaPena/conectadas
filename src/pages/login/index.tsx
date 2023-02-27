@@ -1,11 +1,15 @@
-import { Layout } from "../../components"
+import { Layout, LoginForm } from "../../components"
+import { withAuth } from "../../hoc"
+import { useMe } from "../../hooks"
 
-const Login = () => {
+const LoginPage = () => {
+
+
     return (
             <Layout>
-                Login
+                <LoginForm />
             </Layout>
     )
 }
 
-export {Login}
+export const Login = withAuth(LoginPage)
