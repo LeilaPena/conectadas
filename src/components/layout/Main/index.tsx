@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react"
+import "./style.scss"
 
 type Props = {
     children: ReactNode
