@@ -1,9 +1,12 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
+import { AuthContext } from "../../contexts"
 import { tokenGenerator } from "../../helpers/tokenGenerator"
 import { servicesUser } from "../../services/users"
-import {LoginFormType, signUpType} from "../../types"
+import {LoginFormType, signUpType, User} from "../../types"
 
 const useMe = () => {
+
+    const {me, setMe} = useContext(AuthContext)
 
     useEffect(() => {
         loginWithToken()
@@ -11,16 +14,17 @@ const useMe = () => {
 
     const login = async ({email, pass}: LoginFormType) => {
 
-        const user = await servicesUser.getBy(email, "email")
+        const {id, name, lastname, password} = await servicesUser.getBy(email, "email") as User;
 
-        if (user?.password === pass) {
+        if (password === pass) {
             
             const token = tokenGenerator()
             
-            servicesUser.update({sessionToken: token, id: user.id})
+            servicesUser.update({sessionToken: token, id})
 
             localStorage.setItem('token', token)
         
+            setMe({id, name, lastname, email})
 
         } else {
             console.log('login incorrecto')
@@ -36,17 +40,16 @@ const useMe = () => {
         const token = localStorage.getItem('token')
 
         if(token){
-            const user = await servicesUser.getBy(token, "sessionToken")
-            console.log(user)
+            const {id, name, lastname, email} = await servicesUser.getBy(token, "sessionToken") as User
+            setMe({id, name, lastname, email})
         }
-       
-    }
+    };
 
     const logout = () => {
 
     }
 
-    return { login, signup, loginWithToken, logout};
+    return {me, login, signup, loginWithToken, logout};
 
 }
 
