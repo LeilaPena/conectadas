@@ -12,7 +12,7 @@ const add = async (user: signUpType) => {
 const getAll = async (): Promise<User[]> => {
     const response = await apiFirebase.get('/users.json')
 
-    return mapToArray(response.data);
+    return mapToArray<User>(response.data);
 }
 
 const getBy = async (value: string, type:"email" | "sessionToken") => {
