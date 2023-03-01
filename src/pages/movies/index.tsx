@@ -6,7 +6,11 @@ import { apiMovies } from "../../utils/axios"
 
 const MoviesPage = () => {
 
-    const [movies, setMovies] = useState<any[]>([])
+    type Movie = {
+        poster_path: string;
+    }
+
+    const [movies, setMovies] = useState<Movie[]>([])
 
     useEffect(() => {
         apiMovies.get('/movie/top_rated').then(response => setMovies(response.data.results))
