@@ -9,7 +9,7 @@ export type User = {
   lastname: string;
   name: string;
   password: string;
-  sessionToken: string;
+  sessionToken: string | null;
   status: string;
 };
 
