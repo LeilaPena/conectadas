@@ -8,7 +8,7 @@ const SignUpForm = () => {
   const { register, handleSubmit } = useForm<signUpType>();
 
   const onSubmit = (data: signUpType) => {
-    servicesUser.add(data);
+    servicesUser.add({...data, birthdate: new Date (data.birthdate)});
   };
 
   return (
@@ -16,7 +16,7 @@ const SignUpForm = () => {
       <div className="cardForm">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-wrap">
-          <Form.Group className="m-3" controlId="formBasicEmail">
+          <Form.Group className="m-3" controlId="formBasicName">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
@@ -26,7 +26,7 @@ const SignUpForm = () => {
             />
           </Form.Group>
 
-          <Form.Group className="m-3" controlId="formBasicPassword">
+          <Form.Group className="m-3" controlId="formBasicLastName">
             <Form.Label>Apellido</Form.Label>
             <Form.Control
               type="text"
@@ -36,7 +36,7 @@ const SignUpForm = () => {
             />
           </Form.Group>
 
-          <Form.Group className="m-3" controlId="formBasicPassword">
+          <Form.Group className="m-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
@@ -56,7 +56,7 @@ const SignUpForm = () => {
             />
           </Form.Group>
 
-          <Form.Group className="m-3" controlId="formBasicPassword">
+          <Form.Group className="m-3" controlId="formBasicBirthdate">
             <Form.Label>Fecha de nacimiento</Form.Label>
             <Form.Control
               type="date"
@@ -66,7 +66,7 @@ const SignUpForm = () => {
             />
           </Form.Group>
 
-          <Form.Group className="m-3" controlId="formBasicPassword">
+          <Form.Group className="m-3" controlId="formBasicCountry">
             <Form.Label>Pais</Form.Label>
             <Form.Control
               type="text"
@@ -76,7 +76,7 @@ const SignUpForm = () => {
             />
           </Form.Group>
 
-          <Form.Group className="m-3" controlId="formBasicPassword">
+          <Form.Group className="m-3" controlId="formBasicCity">
             <Form.Label>Ciudad</Form.Label>
             <Form.Control
               type="text"
