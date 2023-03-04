@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { AuthContext } from "../../contexts"
 import { tokenGenerator } from "../../helpers/tokenGenerator"
 import { servicesUser } from "../../services/users"
@@ -8,15 +8,12 @@ const useMe = () => {
 
     const {me, setMe} = useContext(AuthContext)
 
-    useEffect(() => {
-        loginWithToken()
-    }, [])
-
     const login = async ({email, pass}: LoginFormType) => {
 
-        const {id, name, lastname, password} = await servicesUser.getBy(email, "email") as User;
+        const user = await servicesUser.getBy(email, "email");
 
-        if (password === pass) {
+        if (user && user.password === pass) {
+            const {id, name, lastname} = user
             
             const token = tokenGenerator()
             
@@ -40,7 +37,7 @@ const useMe = () => {
         const token = localStorage.getItem('token')
 
         if(token && !me){
-            const user = await servicesUser.getBy(token, "sessionToken") as User
+            const user = await servicesUser.getBy(token, "sessionToken");
             
             if (user) {
                 setMe({id: user.id, name: user.name, lastname: user.lastname, email: user.email})
@@ -50,8 +47,8 @@ const useMe = () => {
 
     const logout = async () => {
         await servicesUser.update({id: me?.id, sessionToken: null});
-        setMe(undefined)
-    }
+        setMe(undefined);
+    };
 
     return {me, login, signup, loginWithToken, logout};
 
