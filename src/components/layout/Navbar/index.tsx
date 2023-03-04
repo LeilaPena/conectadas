@@ -1,9 +1,12 @@
 import { Navbar as NavbarRB, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useMe } from "../../../hooks";
 import "./style.scss"
 
 
 const Navbar = () => {
+
+  const {logout} = useMe()
   return (
     <>
       <NavbarRB bg="dark" variant="dark">
@@ -81,6 +84,7 @@ const Navbar = () => {
                 />
               </svg>
             </NavLink>
+            <Nav.Link className="nav-link mx-2" onClick={logout}>Logout</Nav.Link>
             <p>Leila</p>
           </Nav>
         </Container>

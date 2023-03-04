@@ -39,14 +39,18 @@ const useMe = () => {
     const loginWithToken = async () => {
         const token = localStorage.getItem('token')
 
-        if(token){
-            const {id, name, lastname, email} = await servicesUser.getBy(token, "sessionToken") as User
-            setMe({id, name, lastname, email})
+        if(token && !me){
+            const user = await servicesUser.getBy(token, "sessionToken") as User
+            
+            if (user) {
+                setMe({id: user.id, name: user.name, lastname: user.lastname, email: user.email})
+            }
         }
     };
 
-    const logout = () => {
-
+    const logout = async () => {
+        await servicesUser.update({id: me?.id, sessionToken: null});
+        setMe(undefined)
     }
 
     return {me, login, signup, loginWithToken, logout};
