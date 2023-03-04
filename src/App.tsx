@@ -1,6 +1,15 @@
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { useMe } from "./hooks";
 import { Home, Login, Movies, SignUp, Users } from "./pages";
 function App() {
+
+  const { loginWithToken } = useMe()
+
+  useEffect(() => {
+    loginWithToken();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
