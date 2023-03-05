@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { servicesUser } from "../../../services/users";
 import { signUpType } from "../../../types";
 import "./style.scss";
+import {defaultValues} from "./defaultValues"
+import { validationSchema } from "./validationSchema";
 
 const SignUpForm = () => {
-  const { register, handleSubmit } = useForm<signUpType>();
+  const { register, handleSubmit, formState } = useForm<signUpType>({defaultValues, resolver: validationSchema});
 
   const onSubmit = (data: signUpType) => {
     servicesUser.add({...data, birthdate: new Date (data.birthdate)});
@@ -24,6 +26,7 @@ const SignUpForm = () => {
               {...register("name")}
               className="inputSignUp"
             />
+            {formState.errors.name && (<Form.Text className="text-danger">{formState.errors.name?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicLastName">
@@ -34,6 +37,7 @@ const SignUpForm = () => {
               {...register("lastname")}
               className="inputSignUp"
             />
+            {formState.errors.lastname && (<Form.Text className="text-danger">{formState.errors.lastname?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicEmail">
@@ -44,6 +48,7 @@ const SignUpForm = () => {
               {...register("email")}
               className="inputSignUp"
             />
+            {formState.errors.email && (<Form.Text className="text-danger">{formState.errors.email?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicPassword">
@@ -51,9 +56,10 @@ const SignUpForm = () => {
             <Form.Control
               type="password"
               placeholder="Ingresá tu contraseña"
-              {...register("password")}
+              {...register("pass")}
               className="inputSignUp"
             />
+            {formState.errors.pass && (<Form.Text className="text-danger">{formState.errors.pass?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicBirthdate">
@@ -64,6 +70,7 @@ const SignUpForm = () => {
               {...register("birthdate")}
               className="inputSignUp"
             />
+            {formState.errors.birthdate && (<Form.Text className="text-danger">{formState.errors.birthdate?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicCountry">
@@ -74,6 +81,7 @@ const SignUpForm = () => {
               {...register("country")}
               className="inputSignUp"
             />
+            {formState.errors.country && (<Form.Text className="text-danger">{formState.errors.country?.message}</Form.Text>)}
           </Form.Group>
 
           <Form.Group className="m-3" controlId="formBasicCity">
@@ -84,6 +92,7 @@ const SignUpForm = () => {
               {...register("city")}
               className="inputSignUp"
             />
+            {formState.errors.city && (<Form.Text className="text-danger">{formState.errors.city?.message}</Form.Text>)}
           </Form.Group>
         </div>
 

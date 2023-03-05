@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../contexts"
 import { tokenGenerator } from "../../helpers/tokenGenerator"
 import { servicesUser } from "../../services/users"
-import {LoginFormType, signUpType, User} from "../../types"
+import {LoginFormType, signUpType} from "../../types"
 
 const useMe = () => {
 
@@ -12,7 +12,7 @@ const useMe = () => {
 
         const user = await servicesUser.getBy(email, "email");
 
-        if (user && user.password === pass) {
+        if (user && user.pass === pass) {
             const {id, name, lastname} = user
             
             const token = tokenGenerator()
