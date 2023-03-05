@@ -24,6 +24,7 @@ const useMe = () => {
             setMe({id, name, lastname, email})
 
         } else {
+            setMe(null);
             console.log('login incorrecto')
         }
      }
@@ -42,12 +43,17 @@ const useMe = () => {
             if (user) {
                 setMe({id: user.id, name: user.name, lastname: user.lastname, email: user.email})
             }
+            else{
+                setMe(null);
+            }
+        } else{
+            setMe(null)
         }
     };
 
     const logout = async () => {
         await servicesUser.update({id: me?.id, sessionToken: null});
-        setMe(undefined);
+        setMe(null);
     };
 
     return {me, login, signup, loginWithToken, logout};
