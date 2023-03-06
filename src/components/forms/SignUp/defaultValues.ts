@@ -1,0 +1,1 @@
+export const defaultValues = {email: "", pass: "", name: "", lastname: "", birthdate: new Date(), country: "", city: "",  }
