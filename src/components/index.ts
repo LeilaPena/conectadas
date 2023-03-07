@@ -1,2 +1,2 @@
 export {Layout} from "./layout"
-export { SignUpForm, LoginForm } from "./forms"
+export { SignUpForm, LoginForm, FormMovies } from "./forms"
