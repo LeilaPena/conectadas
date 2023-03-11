@@ -1,21 +1,17 @@
-import {ChevronLeft, ChevronRight, ChevronDoubleRight, ChevronDoubleLeft} from "react-bootstrap-icons"
-import "./style.scss"
-
+import { Pagination as PaginationRB } from "react-bootstrap";
 
 const Pagination = () => {
+  return (
+    <div className="d-flex justify-content-center">
+      <PaginationRB size="sm">
+        <PaginationRB.First />
+        <PaginationRB.Prev />
+        <PaginationRB.Item>{1}</PaginationRB.Item>
+        <PaginationRB.Next />
+        <PaginationRB.Last />
+      </PaginationRB>
+    </div>
+  );
+};
 
-
-
-    return (
-        <div className="containerPagination d-flex justify-content-center">
-            <button> <ChevronDoubleLeft size={15}/> </button>
-            <button> <ChevronLeft size={15}/> </button>
-            <button> 1 </button>
-            <button> <ChevronRight size={15}/> </button>
-            <button> <ChevronDoubleRight size={15}/> </button>
-
-        </div>
-    )
-}
-
-export { Pagination }
+export { Pagination };
