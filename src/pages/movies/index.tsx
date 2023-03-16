@@ -13,7 +13,9 @@ const MoviesPage = () => {
     }
 
     const [movies, setMovies] = useState<Movie[]>([])
-    const [params, setParams] = useState({query: ''})
+    const [totalPages, setTotalPages] = useState(Number)
+
+    const [params, setParams] = useState({ page: '1', query: ''})
     const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
@@ -21,14 +23,24 @@ const MoviesPage = () => {
     }, [params])
 
     useEffect(() => {
-        const query = searchParams.get('query')
-        getBySearch({query: query || ''}).then((response) => {setMovies(response.results)})
+        const query = searchParams.get('query');
+        const page = searchParams.get('page');
+
+        getBySearch({query: query || '', page: page || ""}).then((response) => {
+            setMovies(response.results)
+            setTotalPages(response.total_pages)
+        })
         
     }, [searchParams])
 
     const setSearchQuery = (text: string) =>{
         setParams(prevState => ({...prevState, query: text }))
+        
     }
+
+    const setPage = (page: string) => {
+        setParams(prevState => ({...prevState, page: page }))
+    } 
 
     return (
         <Layout>
@@ -42,7 +54,7 @@ const MoviesPage = () => {
                 ))
            }
             </div>
-            <Pagination />
+            <Pagination onClick={(setPage)} totalPages={totalPages}/>
         </Layout>
     )
 }
