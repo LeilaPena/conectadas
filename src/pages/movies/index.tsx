@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom"
 import { Layout } from "../../components"
+import { FormMovies } from "../../components"
 import { withAuth } from "../../hoc"
-import { apiMovies } from "../../utils/axios"
+import { getBySearch } from "../../services/movies"
 
 
 const MoviesPage = () => {
@@ -11,13 +13,26 @@ const MoviesPage = () => {
     }
 
     const [movies, setMovies] = useState<Movie[]>([])
+    const [params, setParams] = useState({query: ''})
+    const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        apiMovies.get('/movie/top_rated').then(response => setMovies(response.data.results))
-    }, [])
+        setSearchParams(params);
+    }, [params])
+
+    useEffect(() => {
+        const query = searchParams.get('query')
+        getBySearch({query: query || ''}).then((response) => {setMovies(response.results)})
+        
+    }, [searchParams])
+
+    const setSearchQuery = (text: string) =>{
+        setParams(prevState => ({...prevState, query: text }))
+    }
 
     return (
         <Layout>
+            <FormMovies onSearch={setSearchQuery}/>
             <div className='d-flex flex-wrap justify-content-center'>
            {
                 movies.map(movie => (
