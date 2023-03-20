@@ -5,12 +5,16 @@ import { signUpType } from "../../../types";
 import "./style.scss";
 import {defaultValues} from "./defaultValues"
 import { validationSchema } from "./validationSchema";
+import { useNavigate } from "react-router";
 
 const SignUpForm = () => {
   const { register, handleSubmit, formState } = useForm<signUpType>({defaultValues, resolver: validationSchema});
 
+  const navigate = useNavigate()
+
   const onSubmit = (data: signUpType) => {
     servicesUser.add({...data, birthdate: new Date (data.birthdate)});
+    navigate("/login")
   };
 
   return (
