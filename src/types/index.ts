@@ -8,7 +8,7 @@ export type User = {
   id: string;
   lastname: string;
   name: string;
-  password: string;
+  pass: string;
   sessionToken: string | null;
   status: string;
 };
