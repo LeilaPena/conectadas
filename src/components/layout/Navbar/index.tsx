@@ -15,28 +15,27 @@ const Navbar = () => {
         <Container fluid>
           <NavbarRB.Brand>Conectadas</NavbarRB.Brand>
           <Nav className="ms-auto justify-content-end">
-          {me && (
-            <>
-            <NavLink className="nav-link mx-2" to="/">
-              <House size={25}/>
-            </NavLink>
 
-            <NavLink className="nav-link mx-2" to="/movies">
-              <Film size={23}/>
-            </NavLink>
-
-            <NavLink className="nav-link mx-2" to="/users">
-              <People size={25}/>
-            </NavLink>
-      
-            <Nav.Link className="nav-link mx-2" onClick={logout}>
-              <BoxArrowRight size={25}/>
-            </Nav.Link>
-            </>
-            )}
-
-            {!me && (
-            <>
+            {me ? (
+              <>
+              <NavLink className="nav-link mx-2" to="/">
+                <House size={25}/>
+              </NavLink>
+  
+              <NavLink className="nav-link mx-2" to="/movies">
+                <Film size={23}/>
+              </NavLink>
+  
+              <NavLink className="nav-link mx-2" to="/users">
+                <People size={25}/>
+              </NavLink>
+        
+              <Nav.Link className="nav-link mx-2" onClick={logout}>
+                <BoxArrowRight size={25}/>
+              </Nav.Link>
+              </>
+            ) : (
+              <>
             <NavLink className="nav-link mx-2" to="/login">
               <BoxArrowLeft size={25}/>
             </NavLink>
@@ -45,7 +44,6 @@ const Navbar = () => {
             </NavLink>
             </>
             )}
-            
             <p>Leila</p>
           </Nav>
         </Container>
