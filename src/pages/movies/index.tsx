@@ -54,7 +54,7 @@ const MoviesPage = () => {
                 ))
            }
             </div>
-            <Pagination onClick={(setPage)} totalPages={totalPages}/>
+            {movies.length !== 0 && <Pagination onClick={(setPage)} totalPages={totalPages}/>}
         </Layout>
     )
 }

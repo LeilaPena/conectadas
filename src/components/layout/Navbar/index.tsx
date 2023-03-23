@@ -15,7 +15,6 @@ const Navbar = () => {
         <Container fluid>
           <NavbarRB.Brand>Conectadas</NavbarRB.Brand>
           <Nav className="ms-auto justify-content-end">
-
             {me ? (
               <>
               <NavLink className="nav-link mx-2" to="/">
