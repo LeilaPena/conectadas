@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { Layout } from "../../components"
+import { Layout, Pagination } from "../../components"
 import { FormMovies } from "../../components"
 import { withAuth } from "../../hoc"
 import { getBySearch } from "../../services/movies"
@@ -42,6 +42,7 @@ const MoviesPage = () => {
                 ))
            }
             </div>
+            <Pagination />
         </Layout>
     )
 }
