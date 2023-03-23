@@ -42,8 +42,6 @@ const MoviesPage = () => {
         setParams(prevState => ({...prevState, page: page }))
     } 
 
-    console.log(movies.length === 0)
-
     return (
         <Layout>
             <FormMovies onSearch={setSearchQuery}/>
@@ -57,7 +55,6 @@ const MoviesPage = () => {
            }
             </div>
             {movies.length !== 0 && <Pagination onClick={(setPage)} totalPages={totalPages}/>}
-            
         </Layout>
     )
 }
