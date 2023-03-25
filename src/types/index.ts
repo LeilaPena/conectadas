@@ -13,6 +13,16 @@ export type User = {
   status: string;
 };
 
+export type Post = {
+  id: string
+  user: Pick<User, "id" | "name" | "lastname">
+  image?: string
+  title: string
+  detail: string
+  comments: Comment[]
+  date: Date
+}
+
 export type signUpType = Omit<User, "id">;
 
 export type LoginFormType = {
