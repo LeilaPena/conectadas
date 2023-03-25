@@ -23,6 +23,8 @@ export type Post = {
   date: Date
 }
 
+export type PostFormType = Omit <Post, "id">;
+
 export type signUpType = Omit<User, "id">;
 
 export type LoginFormType = {
