@@ -1,10 +1,11 @@
 import { Layout } from "../../components"
 import { withAuth } from "../../hoc"
+import { FormPost } from "../../components"
 
 const HomePage = () => {
     return (
         <Layout>
-            Home
+            <FormPost />
         </Layout>
     )
 }
