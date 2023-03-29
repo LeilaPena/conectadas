@@ -1,4 +1,4 @@
-import { Layout } from "../../components"
+import { Layout, Post } from "../../components"
 import { withAuth } from "../../hoc"
 import { FormPost } from "../../components"
 import { useMe } from "../../hooks"
