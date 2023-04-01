@@ -4,6 +4,7 @@ import { FormPost } from "../../components"
 import { usePosts } from "../../hooks"
 
 import { Card, Container, ListGroup } from "react-bootstrap"
+import { Plus } from "react-bootstrap-icons"
 
 const HomePage = () => {
 
@@ -16,18 +17,7 @@ const HomePage = () => {
                     <div className="mt-5">
                     <Card style={{ width: '18rem' }}>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>user 1 </ListGroup.Item>
-                            <ListGroup.Item>user 2</ListGroup.Item>
-                            <ListGroup.Item>user 3</ListGroup.Item>
-                        </ListGroup>
-                    </Card>
-                    </div>
-                    <div className="mt-5">
-                    <Card style={{ width: '18rem' }}>
-                        <ListGroup variant="flush">
-                            <ListGroup.Item>user 1 </ListGroup.Item>
-                            <ListGroup.Item>user 2</ListGroup.Item>
-                            <ListGroup.Item>user 3</ListGroup.Item>
+                            <ListGroup.Item>user 1 <Plus size={20}/> </ListGroup.Item>
                         </ListGroup>
                     </Card>
                     </div>
