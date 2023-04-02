@@ -1,4 +1,5 @@
-import { postFormType } from "../types";
+import { mapToArray } from "../helpers/mapToArray";
+import { Post, postFormType } from "../types";
 import { apiFirebase } from "../utils/axios";
 
 const add = async (post: postFormType) => {
@@ -9,4 +10,10 @@ const add = async (post: postFormType) => {
 
 }
 
-export const servicesPosts = {add}
+const getAll = async () => {
+    const response = await apiFirebase.get('posts.json')
+
+    return mapToArray<Post>(response.data)
+}
+
+export const servicesPosts = {add, getAll}

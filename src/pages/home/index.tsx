@@ -1,22 +1,28 @@
 import { Layout, Post } from "../../components"
 import { withAuth } from "../../hoc"
 import { FormPost } from "../../components"
-import { useMe } from "../../hooks"
-import { servicesPosts } from "../../services/posts"
+import { usePosts } from "../../hooks"
+
+import { Container } from "react-bootstrap"
 
 const HomePage = () => {
 
-    const {me} = useMe();
-
-    const addPosts = (data: {title: string, detail: string }) => {
-        const user = {id: me?.id, name: me?.name, lastname: me?.lastname}
-        me && servicesPosts.add({title: data.title, detail: data.detail, date: new Date(), user})
-    }
-
+    const { posts, addPosts } = usePosts()
 
     return (
         <Layout>
+            <Container fluid>
             <FormPost onSubmit={addPosts}/>
+            
+            {
+                posts.map(post => (
+                    <div className="m-4" key={post.id}>
+                        <Post title={post.title} date={post.date} detail={post.detail} user={post.user} id={post.id}/>
+                    </div>
+                ))
+            }
+            </ Container>
+
         </Layout>
     )
 }
