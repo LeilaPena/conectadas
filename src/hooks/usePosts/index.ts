@@ -10,6 +10,8 @@ const usePosts = () => {
 
     useEffect(() => {
         !posts.length && getPosts();
+        
+        console.log(me)
     }, [posts])
 
     const getPosts = async () => {
