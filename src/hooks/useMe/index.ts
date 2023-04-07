@@ -13,7 +13,7 @@ const useMe = () => {
         const user = await servicesUser.getBy(email, "email");
 
         if (user && user.pass === pass) {
-            const {id, name, lastname} = user
+            const {id, name, lastname, friends} = user
             
             const token = tokenGenerator()
             
@@ -21,7 +21,7 @@ const useMe = () => {
 
             localStorage.setItem('token', token)
         
-            setMe({id, name, lastname, email})
+            setMe({id, name, lastname, email, friends})
 
         } else {
             setMe(null);
@@ -41,7 +41,7 @@ const useMe = () => {
             const user = await servicesUser.getBy(token, "sessionToken");
             
             if (user) {
-                setMe({id: user.id, name: user.name, lastname: user.lastname, email: user.email})
+                setMe(user)
             }
             else{
                 setMe(null);

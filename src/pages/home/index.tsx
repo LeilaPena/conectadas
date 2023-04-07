@@ -1,25 +1,28 @@
 import { Aside, Layout, Post } from "../../components"
 import { withAuth } from "../../hoc"
 import { FormPost } from "../../components"
-import { usePosts } from "../../hooks"
-
+import { usePosts, useUsers } from "../../hooks"
 import { Card, Container, ListGroup } from "react-bootstrap"
 import { Plus } from "react-bootstrap-icons"
 
 const HomePage = () => {
 
     const { posts, addPosts } = usePosts()
+    const {users, addFriend} = useUsers()
 
     return (
         <Layout>
             <Container fluid className="d-flex justify-content-around">
                 <Aside>
                     <div className="mt-5">
-                    <Card style={{ width: '18rem' }}>
-                        <ListGroup variant="flush">
-                            <ListGroup.Item>user 1 <Plus size={20}/> </ListGroup.Item>
-                        </ListGroup>
-                    </Card>
+                        <Card style={{ width: '18rem' }}>
+                            <ListGroup variant="flush">
+                                {users.map(user => (
+                                    <ListGroup.Item key={user.id}>{user.name} {user.lastname} <button onClick={() => addFriend(user.id)}><Plus size={20} /></button> </ListGroup.Item>
+                                ))
+                                }
+                            </ListGroup>
+                        </Card>
                     </div>
                 </Aside>
                 <div>
