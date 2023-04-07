@@ -1,14 +1,16 @@
 import { Aside, Layout, Post } from "../../components"
 import { withAuth } from "../../hoc"
 import { FormPost } from "../../components"
-import { usePosts, useUsers } from "../../hooks"
+import { useMe, usePosts, useUsers } from "../../hooks"
 import { Card, Container, ListGroup } from "react-bootstrap"
 import { Plus } from "react-bootstrap-icons"
+import { useEffect } from "react"
 
 const HomePage = () => {
 
     const { posts, addPosts } = usePosts()
     const {users, addFriend} = useUsers()
+    const {me} = useMe()
 
     return (
         <Layout>
@@ -17,6 +19,17 @@ const HomePage = () => {
                     <div className="mt-5">
                         <Card style={{ width: '18rem' }}>
                             <ListGroup variant="flush">
+                                <Card.Header>Amigos agregados</Card.Header>
+                                {users.filter((user: any) => me?.friends?.includes(user.id)).map(user => (
+                                    <ListGroup.Item key={user.id}>{user.name} {user.lastname}</ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        </Card>
+                    </div>
+                    <div className="mt-5">
+                        <Card style={{ width: '18rem' }}>
+                            <ListGroup variant="flush">
+                                <Card.Header>Usuarios</Card.Header>
                                 {users.map(user => (
                                     <ListGroup.Item key={user.id}>{user.name} {user.lastname} <button onClick={() => addFriend(user.id)}><Plus size={20} /></button> </ListGroup.Item>
                                 ))
