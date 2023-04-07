@@ -41,7 +41,7 @@ const useMe = () => {
             const user = await servicesUser.getBy(token, "sessionToken");
             
             if (user) {
-                setMe({id: user.id, name: user.name, lastname: user.lastname, email: user.email, friends: user.friends})
+                setMe(user)
             }
             else{
                 setMe(null);
