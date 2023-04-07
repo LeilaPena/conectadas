@@ -4,7 +4,6 @@ import { FormPost } from "../../components"
 import { useMe, usePosts, useUsers } from "../../hooks"
 import { Card, Container, ListGroup } from "react-bootstrap"
 import { Plus } from "react-bootstrap-icons"
-import { useEffect } from "react"
 
 const HomePage = () => {
 
@@ -30,10 +29,9 @@ const HomePage = () => {
                         <Card style={{ width: '18rem' }}>
                             <ListGroup variant="flush">
                                 <Card.Header>Usuarios</Card.Header>
-                                {users.map(user => (
+                                {users.filter((user: any) => me?.id !== user.id && !me?.friends?.includes(user.id)).map(user => (
                                     <ListGroup.Item key={user.id}>{user.name} {user.lastname} <button onClick={() => addFriend(user.id)}><Plus size={20} /></button> </ListGroup.Item>
-                                ))
-                                }
+                                ))}
                             </ListGroup>
                         </Card>
                     </div>
