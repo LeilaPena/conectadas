@@ -24,8 +24,14 @@ const useUsers = () => {
         getUsers()
     }
 
+    const deleteFriend = (friendId: any) => {
+        const friends = me?.friends
+        const friendsFilter = friends?.filter(friend => friendId !== friend)
+        servicesUser.update({friends: friendsFilter, id: me?.id})
+    }
+
     
-    return {users, addFriend}
+    return {users, addFriend, deleteFriend}
 }
 
 export {useUsers}

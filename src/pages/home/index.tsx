@@ -3,12 +3,12 @@ import { withAuth } from "../../hoc"
 import { FormPost } from "../../components"
 import { useMe, usePosts, useUsers } from "../../hooks"
 import { Card, Container, ListGroup } from "react-bootstrap"
-import { Plus } from "react-bootstrap-icons"
+import { Plus, Trash } from "react-bootstrap-icons"
 
 const HomePage = () => {
 
     const { posts, addPosts } = usePosts()
-    const {users, addFriend} = useUsers()
+    const {users, addFriend, deleteFriend} = useUsers()
     const {me} = useMe()
 
     return (
@@ -20,7 +20,7 @@ const HomePage = () => {
                             <ListGroup variant="flush">
                                 <Card.Header>Amigos agregados</Card.Header>
                                 {users.filter((user: any) => me?.friends?.includes(user.id)).map(user => (
-                                    <ListGroup.Item key={user.id}>{user.name} {user.lastname}</ListGroup.Item>
+                                    <ListGroup.Item key={user.id}>{user.name} {user.lastname} <button onClick={() => deleteFriend(user.id)}><Trash size={20} /></button></ListGroup.Item>
                                 ))}
                             </ListGroup>
                         </Card>
