@@ -10,7 +10,6 @@ const useUsers = () => {
 
     useEffect(() => {
         !users.length && getUsers()
-        console.log(me)
     }, [users])
 
 
@@ -21,8 +20,8 @@ const useUsers = () => {
 
     const addFriend = async (friendId: any) => {
         const friends = me?.friends || [];
-        console.log(me?.friends)
         await servicesUser.update({friends: [...friends, friendId], id: me?.id});
+        getUsers()
     }
 
     
