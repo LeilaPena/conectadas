@@ -18,9 +18,9 @@ const useUsers = () => {
         loadUsers(response)
     }
 
-    const addFriend = (friendId: any) => {
+    const addFriend = async (friendId: any) => {
         const friends = me?.friends || [];
-        servicesUser.update({friends: [...friends, friendId], id: me?.id});
+        await servicesUser.update({friends: [...friends, friendId], id: me?.id});
         getUsers()
     }
 
