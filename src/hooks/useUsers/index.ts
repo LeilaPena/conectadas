@@ -24,10 +24,11 @@ const useUsers = () => {
         getUsers()
     }
 
-    const deleteFriend = (friendId: any) => {
+    const deleteFriend = async (friendId: any) => {
         const friends = me?.friends
         const friendsFilter = friends?.filter(friend => friendId !== friend)
-        servicesUser.update({friends: friendsFilter, id: me?.id})
+        await servicesUser.update({friends: friendsFilter, id: me?.id})
+        getUsers()
     }
 
     
